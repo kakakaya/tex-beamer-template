@@ -1,0 +1,99 @@
+\documentclass[dvipdfmx,11pt,notheorems]{beamer}
+
+% \AtBeginDvi{\special{pdf:tounicode 90ms-RKSJ-UCS2}} %しおり文字化け対策おまじない
+\AtBeginDvi{\special{pdf:tounicode EUC-UCS2}} %しおり文字化け対策おまじない
+
+% title
+
+% variables
+\makeatletter
+\date{\today}
+\def\thesis#1{\def\@thesis{#1}}
+\def\id#1{\def\@id{#1}}
+\def\course#1{\def\@course{#1}}
+\makeatother
+
+% packages
+\usepackage{bxdpx-beamer}
+\usepackage{minijs}			       %和文用
+\renewcommand{\kanjifamilydefault}{\gtdefault} %和文用
+\usepackage{graphicx}
+\usepackage{listings,jlisting}
+
+% style
+\usetheme{Berlin}
+\usecolortheme{whale}
+
+\usefonttheme{professionalfonts} % 数式のフォントを綺麗に
+% \setbeamertemplate{frametitle}[default][center] %フレームのタイトルを中央に
+\setbeamertemplate{navigation symbols}{}   % 末尾のシンボル削除
+\setbeamercovered{transparent}             % 未公開部分を半透明で表示
+\setbeamertemplate{footline}[page number]  % 
+% \setbeamerfont{footline}{size=\normalsize,series=\bfseries} %
+% \setbeamercolor{footline}{fg=black,bg=black}                %
+
+% 上下端の情報開示
+\setbeamertemplate{headline}
+{
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
+    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshorttitle
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
+    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+
+\makeatletter
+\setbeamertemplate{footline} {
+  \leavevmode%
+  \hbox{%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+   \usebeamerfont{author in head/foot}\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+  \end{beamercolorbox}}%
+  \vskip0pt%
+}
+\makeatother
+
+
+% 定義環境
+\usepackage{amsmath,amssymb}
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{theorem}{定理}
+\newtheorem{definition}{定義}
+\newtheorem{proposition}{命題}
+\newtheorem{lemma}{補題}
+\newtheorem{corollary}{系}
+\newtheorem{conjecture}{予想}
+\newtheorem*{remark}{Remark}
+\renewcommand{\proofname}{}
+
+\lstset{%
+frame=single,
+stringstyle={\ttfamily \color[rgb]{0,0,1}},
+commentstyle={\itshape \color[cmyk]{1,0,1,0}},
+identifierstyle={\ttfamily},
+keywordstyle={\ttfamily \color[cmyk]{0,1,0,0}},
+basicstyle={\ttfamily},
+breaklines=true,
+xleftmargin=0zw,
+xrightmargin=0zw,
+framerule=.2pt,
+columns=[l]{fullflexible},
+numbers=left,
+stepnumber=1,
+numberstyle={\scriptsize},
+numbersep=1em,
+showstringspaces=\false,
+keepspaces=true,
+language={C},
+lineskip=-0.5zw,
+morecomment={[s][{\color[cmyk]{1,0,0,0}}]{/**}{*/}},
+}
