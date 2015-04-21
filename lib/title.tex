@@ -1,5 +1,3 @@
-\documentclass[dvipdfmx,11pt,notheorems]{beamer}
-
 % \AtBeginDvi{\special{pdf:tounicode 90ms-RKSJ-UCS2}} %しおり文字化け対策おまじない
 \AtBeginDvi{\special{pdf:tounicode EUC-UCS2}} %しおり文字化け対策おまじない
 
@@ -32,17 +30,29 @@
 % \setbeamerfont{footline}{size=\normalsize,series=\bfseries} %
 % \setbeamercolor{footline}{fg=black,bg=black}                %
 
+% 各セクション毎に目次を表示
+\AtBeginSection[]		%AtBeginSubsectionにするとサブセクション毎になる
+{
+  \begin{frame}
+   \frametitle{Table of Contents}
+   \tableofcontents[currentsection]
+  \end{frame}
+}
+
 % 上下端の情報開示
 \setbeamertemplate{headline}
 {
   \leavevmode%
   \hbox{%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
-    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshorttitle
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
+   \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshorttitle
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
-    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center,leftskip=1em]{subsection in head/foot}%
+   \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
   \end{beamercolorbox}}%
+  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
+   \usebeamerfont{section in head/foot}\insertsubsectionhead\hspace*{2ex}
+  \end{beamercolorbox}%
   \vskip0pt%
 }
 
