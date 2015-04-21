@@ -54,6 +54,8 @@ end
 task :make_title do
   title = YAML.load_file("#{CONFIG}/title.yml")
   `cat #{LIB}/title.tex > #{TMP}/title.tex`
+  `cat #{LIB}/slide_header.tex > #{TMP}/slide_header.tex`
+  `cat #{LIB}/handout_header.tex > #{TMP}/handout_header.tex`
 
   # 各種変数
   `echo '\\\\title{#{title['title']}}' >> #{TMP}/title.tex`
@@ -92,21 +94,30 @@ task :make_body do
 end
 
 task :concat do
-  `cat #{TMP}/title.tex #{TMP}/body.tex #{TMP}/footer.tex > #{TMP}/report.tex`
 end
 
-task :make_pdf do
-  `cd #{TMP} && platex report.tex && platex report.tex`
-  `cd #{TMP} && dvipdfmx report.dvi`
-  `mv #{TMP}/report.pdf #{OUTPUT}/report.pdf`
+task :make_slide do
+  `cat #{TMP}/slide_header.tex #{TMP}/title.tex #{TMP}/body.tex #{TMP}/footer.tex > #{TMP}/slide.tex`
+
+  `cd #{TMP} && platex slide.tex && platex slide.tex`
+  `cd #{TMP} && dvipdfmx slide.dvi`
+  `mv #{TMP}/slide.pdf #{OUTPUT}/slide.pdf`
+end
+
+task :make_handout do
+  `cat #{TMP}/handout_header.tex #{TMP}/title.tex #{TMP}/body.tex #{TMP}/footer.tex > #{TMP}/handout.tex`
+
+  `cd #{TMP} && platex handout.tex && platex handout.tex`
+  `cd #{TMP} && dvipdfmx handout.dvi`
+  `mv #{TMP}/handout.pdf #{OUTPUT}/handout.pdf`
 end
 
 task :make_pdf_debug do
-  sh "cd #{TMP} && platex report.tex && platex report.tex"
-  `cd #{TMP} && dvipdfmx report.dvi`
-  `mv #{TMP}/report.pdf #{OUTPUT}/report.pdf`
+  sh "cd #{TMP} && platex debug.tex && platex debug.tex"
+  sh "cd #{TMP} && dvipdfmx debug.dvi"
+  `mv #{TMP}/debug.pdf #{OUTPUT}/debug.pdf`
 end
 
-task :compile => [:make_title, :make_body, :concat, :make_pdf]
+task :compile => [:make_title, :make_body, :concat, :make_slide, :make_handout]
 
 task :default => :compile
