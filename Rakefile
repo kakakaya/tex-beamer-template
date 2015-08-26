@@ -39,6 +39,13 @@ task :reset do
   `rm -rf #{IMAGES}`
 end
 
+task :clean do
+  # 一時ファイルのみ削除する、参照が壊れた時に使う
+  `rm -rf #{TMP}`
+  `mkdir #{TMP}`
+  `echo "\\end{document}" > #{TMP}/footer.tex`
+end
+
 # create new .tex file
 task :create do
   if ENV['name'].nil?
@@ -113,6 +120,9 @@ task :make_handout do
 end
 
 task :make_pdf_debug do
+  # デバッグ用のメッセージを出力しながらPDFを作成する
+  `cat #{TMP}/slide_header.tex #{TMP}/title.tex #{TMP}/body.tex #{TMP}/footer.tex > #{TMP}/debug.tex`
+
   sh "cd #{TMP} && platex debug.tex && platex debug.tex"
   sh "cd #{TMP} && dvipdfmx debug.dvi"
   `mv #{TMP}/debug.pdf #{OUTPUT}/debug.pdf`
