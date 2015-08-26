@@ -67,9 +67,7 @@ task :make_title do
   # 各種変数
   `echo '\\\\title{#{title['title']}}' >> #{TMP}/title.tex`
   `echo '\\\\author{#{title['name']}}' >> #{TMP}/title.tex`
-  `echo '\\\\thesis{#{title['thesis']}}' >> #{TMP}/title.tex`
-  `echo '\\\\id{#{title['stdid']}}' >> #{TMP}/title.tex`
-  `echo '\\\\course{#{title['course']}}' >> #{TMP}/title.tex`
+  `echo '\\\\date{#{title['date']}}' >> #{TMP}/title.tex`
   `echo '\\\\begin{document}' >> #{TMP}/title.tex`
 
   # 表紙
