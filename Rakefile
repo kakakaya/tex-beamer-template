@@ -126,6 +126,11 @@ task :make_pdf_debug do
   `mv #{TMP}/debug.pdf #{OUTPUT}/debug.pdf`
 end
 
+task :copy_host do
+  # ~/mnt/host に output/*.pdfをコピーする
+  `cd #{OUTPUT} && ls -1 | xargs -n 1 -I % sh -c "echo % && cp % \"$HOME/mnt/host/$(echo $(dirname $(pwd)) | rev | cut -d / -f 1 | rev)-%\""`
+end
+
 task :compile => [:make_title, :make_body, :concat, :make_slide, :make_handout]
 
 task :default => :compile
