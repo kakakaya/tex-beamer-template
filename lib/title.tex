@@ -20,6 +20,15 @@
 \usetheme{Berlin}
 \usecolortheme{whale}
 
+%% カウンターが上手い感じのバックアップスライドを囲む
+\newcommand{\backupbegin}{
+   \newcounter{finalframe}
+   \setcounter{finalframe}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+   \setcounter{framenumber}{\value{finalframe}}
+}
+
 \usefonttheme{professionalfonts} % 数式のフォントを綺麗に
 % \setbeamertemplate{frametitle}[default][center] %フレームのタイトルを中央に
 \setbeamertemplate{navigation symbols}{}   % 末尾のシンボル削除
