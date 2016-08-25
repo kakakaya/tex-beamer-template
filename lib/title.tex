@@ -53,15 +53,17 @@
 {
   \leavevmode%
   \hbox{%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
+  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
    \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshorttitle
   \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,center,leftskip=1em]{subsection in head/foot}%
+  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center,leftskip=1em]{subsection in head/foot}%
    \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
   \end{beamercolorbox}}%
-  \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
-   \usebeamerfont{section in head/foot}\insertsubsectionhead\hspace*{2ex}
-  \end{beamercolorbox}%
+
+  % サブセクションもフッターに表示するなら
+  % \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
+  %  \usebeamerfont{section in head/foot}\insertsubsectionhead\hspace*{2ex}
+  % \end{beamercolorbox}%
   \vskip0pt%
 }
 
