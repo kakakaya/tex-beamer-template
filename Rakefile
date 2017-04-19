@@ -128,7 +128,7 @@ end
 
 task :copy_host do
   # ~/mnt/host に output/*.pdfをコピーする
-  `cd #{OUTPUT} && ls -1 | xargs -n 1 -I % sh -c "echo % && cp % \"$HOME/mnt/host/$(echo $(dirname $(pwd)) | rev | cut -d / -f 1 | rev)-%\""`
+  `cd #{OUTPUT} && ls -1 | xargs -n 1 -I % sh -c "echo % && cp % \"$HOME/mnt/host/$(python3 -c 'import os; print("_".join(os.getcwd().split("/")[-2:]))')-%\""`
 end
 
 task :compile => [:make_title, :make_body, :concat, :make_slide, :make_handout]
