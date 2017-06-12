@@ -1,68 +1,54 @@
-% \AtBeginDvi{\special{pdf:tounicode 90ms-RKSJ-UCS2}} %しおり文字化け対策おまじない
-\AtBeginDvi{\special{pdf:tounicode EUC-UCS2}} %しおり文字化け対策おまじない
-
-% title
-
-% variables
-\makeatletter
-% if need, write like below
-% \def\id#1{\def\@id{#1}}
-\makeatother
-
 % packages
 \usepackage{bxdpx-beamer}
-\usepackage{minijs}			       %和文用
+\usepackage{pxjahyper} % 日本語栞
 \renewcommand{\kanjifamilydefault}{\gtdefault} %和文用
 \usepackage{graphicx}
 \usepackage{listings,jlisting}
 
 % style
 \usetheme{Berlin}
-\usecolortheme{whale}
+\usecolortheme{dolphin}
 
 %% カウンターが上手い感じのバックアップスライドを囲む
 \newcommand{\backupbegin}{
-   \newcounter{finalframe}
-   \setcounter{finalframe}{\value{framenumber}}
+  \newcounter{finalframe}
+  \setcounter{finalframe}{\value{framenumber}}
 }
 \newcommand{\backupend}{
-   \setcounter{framenumber}{\value{finalframe}}
+  \setcounter{framenumber}{\value{finalframe}}
 }
 
 \usefonttheme{professionalfonts} % 数式のフォントを綺麗に
-% \setbeamertemplate{frametitle}[default][center] %フレームのタイトルを中央に
 \setbeamertemplate{navigation symbols}{}   % 末尾のシンボル削除
 \setbeamercovered{transparent}             % 未公開部分を半透明で表示
-\setbeamertemplate{footline}[page number]  % 
+\setbeamertemplate{footline}[page number]  %
 \setbeamertemplate{bibliography item}[text] %引用がまともに動く
 \setbeamerfont{frametitle}{size=\small}     %各フレームのタイトルを小さめに
-% \setbeamerfont{footline}{size=\normalsize,series=\bfseries} %
-% \setbeamercolor{footline}{fg=black,bg=black}                %
 
-% 各セクション毎に目次を表示
+% スライドでは各セクション毎に目次を表示
 \AtBeginSection[]		%AtBeginSubsectionにするとサブセクション毎になる
 {
-  \begin{frame}
-   \frametitle{Table of Contents}
-   \tableofcontents[currentsection]
+  \begin{frame}<handout:0> % hide on handout
+    \frametitle{}
+    \tableofcontents[currentsection]
   \end{frame}
 }
 
-% 上下端の情報開示
+% 上下端の情報
 \setbeamertemplate{headline}
 {
   \leavevmode%
   \hbox{%
-  \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
-   \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshorttitle
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center,leftskip=1em]{subsection in head/foot}%
-   \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
-  \end{beamercolorbox}}%
+    \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,right,rightskip=1em]{section in head/foot}%
+      \usebeamerfont{subsection in head/foot}\hspace*{2ex}\insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.6\paperwidth,ht=2.25ex,dp=1ex,center,leftskip=1em]{subsection in head/foot}%
+      \usebeamerfont{section in head/foot}\insertsectionhead\hspace*{2ex}
+    \end{beamercolorbox}}%
 
   % サブセクションもフッターに表示するなら
   % \begin{beamercolorbox}[wd=.333333\paperwidth,ht=2.25ex,dp=1ex,left,leftskip=1em]{subsection in head/foot}%
-  %  \usebeamerfont{section in head/foot}\insertsubsectionhead\hspace*{2ex}
+  %   \usebeamerfont{section in head/foot}\insertsubsectionhead\hspace*{2ex}
   % \end{beamercolorbox}%
   \vskip0pt%
 }
@@ -71,13 +57,13 @@
 \setbeamertemplate{footline} {
   \leavevmode%
   \hbox{%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-   \usebeamerfont{author in head/foot}\insertshortauthor
-  \end{beamercolorbox}%
-  \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
-    \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
-    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
-  \end{beamercolorbox}}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+      \usebeamerfont{author in head/foot}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=.5\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+      \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
+      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}}%
   \vskip0pt%
 }
 \makeatother
@@ -97,24 +83,24 @@
 \renewcommand{\proofname}{証明}
 
 \lstset{%
-frame=single,
-stringstyle={\ttfamily \color[rgb]{0,0,1}},
-commentstyle={\itshape \color[cmyk]{1,0,1,0}},
-identifierstyle={\ttfamily},
-keywordstyle={\ttfamily \color[cmyk]{0,1,0,0}},
-basicstyle={\ttfamily},
-breaklines=true,
-xleftmargin=0zw,
-xrightmargin=0zw,
-framerule=.2pt,
-columns=[l]{fullflexible},
-numbers=left,
-stepnumber=1,
-numberstyle={\scriptsize},
-numbersep=1em,
-showstringspaces=\false,
-keepspaces=true,
-language={C},
-lineskip=-0.5zw,
-morecomment={[s][{\color[cmyk]{1,0,0,0}}]{/**}{*/}},
+  frame=single,
+  stringstyle={\ttfamily \color[rgb]{0,0,1}},
+  commentstyle={\itshape \color[cmyk]{1,0,1,0}},
+  identifierstyle={\ttfamily},
+  keywordstyle={\ttfamily \color[cmyk]{0,1,0,0}},
+  basicstyle={\ttfamily},
+  breaklines=true,
+  xleftmargin=0zw,
+  xrightmargin=0zw,
+  framerule=.2pt,
+  columns=[l]{fullflexible},
+  numbers=left,
+  stepnumber=1,
+  numberstyle={\scriptsize},
+  numbersep=1em,
+  showstringspaces=\false,
+  keepspaces=true,
+  language={C},
+  lineskip=-0.5zw,
+  morecomment={[s][{\color[cmyk]{1,0,0,0}}]{/**}{*/}},
 }

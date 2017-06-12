@@ -104,7 +104,7 @@ end
 task :make_slide do
   `cat #{TMP}/slide_header.tex #{TMP}/title.tex #{TMP}/body.tex #{TMP}/footer.tex > #{TMP}/slide.tex`
 
-  `cd #{TMP} && platex slide.tex && platex slide.tex`
+  `cd #{TMP} && uplatex slide.tex && uplatex slide.tex`
   `cd #{TMP} && dvipdfmx slide.dvi`
   `mv #{TMP}/slide.pdf #{OUTPUT}/slide.pdf`
 end
@@ -112,7 +112,7 @@ end
 task :make_handout do
   `cat #{TMP}/handout_header.tex #{TMP}/title.tex #{TMP}/body.tex #{TMP}/footer.tex > #{TMP}/handout.tex`
 
-  `cd #{TMP} && platex handout.tex && platex handout.tex`
+  `cd #{TMP} && uplatex handout.tex && uplatex handout.tex`
   `cd #{TMP} && dvipdfmx handout.dvi`
   `mv #{TMP}/handout.pdf #{OUTPUT}/handout.pdf`
 end
@@ -121,7 +121,7 @@ task :make_pdf_debug do
   # デバッグ用のメッセージを出力しながらPDFを作成する
   `cat #{TMP}/slide_header.tex #{TMP}/title.tex #{TMP}/body.tex #{TMP}/footer.tex > #{TMP}/debug.tex`
 
-  sh "cd #{TMP} && platex debug.tex && platex debug.tex"
+  sh "cd #{TMP} && uplatex debug.tex && uplatex debug.tex"
   sh "cd #{TMP} && dvipdfmx debug.dvi"
   `mv #{TMP}/debug.pdf #{OUTPUT}/debug.pdf`
 end
